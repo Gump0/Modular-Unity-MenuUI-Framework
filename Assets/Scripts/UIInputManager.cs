@@ -8,6 +8,11 @@ public class UIInputManager : MonoBehaviour
     public string[] UINavigationKeys;
     [HideInInspector] public KeyCode[] buttonKeys;
 
+    private void Awake()
+    {
+        buttonKeys = KeyConverter(UINavigationKeys);
+    }
+
     private KeyCode[] KeyConverter(string[] stringArray)
     {
         KeyCode[] keys = new KeyCode[stringArray.Length];
