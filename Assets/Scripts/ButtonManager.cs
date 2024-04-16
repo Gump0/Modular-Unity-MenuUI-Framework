@@ -15,30 +15,39 @@ public class ButtonManager : MonoBehaviour
     public int buttonIndex = 0; //switch to private after
 
     public string[] methods;
-    private void Awake()
-    {
+    private void Awake(){
         inputManager = GetComponent<UIInputManager>();  
         buttonFunctions = GetComponent<ButtonFunctions>();
         if (buttonHighlight == null) buttonHighlight = GameObject.Find("Highlight");
     }
 
-    void Update()
-    {
+    void Update(){
+        CheckInputs();
+    }
+    void CheckInputs(){
         if (Input.GetKeyDown(inputManager.buttonKeys[0])){ // Left Input
             buttonFunctions.CallMethod(methods[0]);
-            if(buttonIndex >= listOfButtons.Length +1) buttonIndex -=2;
+            if(buttonIndex >= 2) buttonIndex -=2;
+            UpdateButtonHighlight();
         }
         if (Input.GetKeyDown(inputManager.buttonKeys[1])){ // Right Input
             buttonFunctions.CallMethod(methods[1]);
-            if(buttonIndex <= listOfButtons.Length -1) buttonIndex +=2;
+            if(buttonIndex <= listOfButtons.Length -2) buttonIndex +=2;
+            UpdateButtonHighlight();
         }
         if (Input.GetKeyDown(inputManager.buttonKeys[2])){ // Up Input
             buttonFunctions.CallMethod(methods[2]);
             if(buttonIndex != listOfButtons.Length) buttonIndex++;
+            UpdateButtonHighlight();
         }
         if (Input.GetKeyDown(inputManager.buttonKeys[3])){ // Down Input
             buttonFunctions.CallMethod(methods[3]); 
             if(buttonIndex != 0) buttonIndex--;
+            UpdateButtonHighlight();
         }
+    }
+
+    void UpdateButtonHighlight(){
+        buttonHighlight.transform.SetParent(listOfButtons[buttonIndex].transform);
     }
 }
