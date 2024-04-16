@@ -12,22 +12,34 @@ public class ButtonManager : MonoBehaviour
     private GameObject buttonHighlight;
     private UIInputManager inputManager;
     [SerializeField] private Image[] listOfButtons;
-    public int buttonIndex = 0; //switch to private after
-
+    private int buttonIndex = 0;
     public string[] methods;
+
+    //Transform Lerp Animation stuff
+    private Transform currentButtonLocation, highlightLocation;
+    private float elapsedTime;
+    
     private void Awake(){
-        inputManager = GetComponent<UIInputManager>();  
+        inputManager = GetComponent<UIInputManager>();
         buttonFunctions = GetComponent<ButtonFunctions>();
         if (buttonHighlight == null) buttonHighlight = GameObject.Find("Highlight");
+        
+        highlightLocation = buttonHighlight.transform;
+        currentButtonLocation = listOfButtons[buttonIndex].transform;
     }
 
     void Update(){
+        if (elapsedTime < 2){
+            float t = elapsedTime/2;
+            buttonHighlight.transform.position = Vector3.Lerp(highlightLocation.position, currentButtonLocation.position, t);
+            elapsedTime += Time.deltaTime;
+        }
         CheckInputs();
     }
     void CheckInputs(){
         if (Input.GetKeyDown(inputManager.buttonKeys[3])){ // Right Input
             buttonFunctions.CallMethod(methods[3]);
-            if(buttonIndex != listOfButtons.Length) buttonIndex++;
+            if(buttonIndex != listOfButtons.Length - 1) buttonIndex++;
             UpdateButtonHighlight();
         }
         if (Input.GetKeyDown(inputManager.buttonKeys[1])){ // Left Input
@@ -42,13 +54,15 @@ public class ButtonManager : MonoBehaviour
         }
         if (Input.GetKeyDown(inputManager.buttonKeys[2])){ // Down Input
             buttonFunctions.CallMethod(methods[2]); 
-            if(buttonIndex <= listOfButtons.Length -2) buttonIndex +=2;
+            if(buttonIndex < listOfButtons.Length -2) buttonIndex +=2;
             UpdateButtonHighlight();
         }
     }
 
     void UpdateButtonHighlight(){
+        highlightLocation = buttonHighlight.transform;
         buttonHighlight.transform.SetParent(listOfButtons[buttonIndex].transform);
-        buttonHighlight.transform.position = listOfButtons[buttonIndex].transform.position;
+        currentButtonLocation = listOfButtons[buttonIndex].transform;
+        elapsedTime = 0f;
     }
 }
