@@ -25,29 +25,30 @@ public class ButtonManager : MonoBehaviour
         CheckInputs();
     }
     void CheckInputs(){
-        if (Input.GetKeyDown(inputManager.buttonKeys[0])){ // Left Input
+        if (Input.GetKeyDown(inputManager.buttonKeys[3])){ // Right Input
+            buttonFunctions.CallMethod(methods[3]);
+            if(buttonIndex != listOfButtons.Length) buttonIndex++;
+            UpdateButtonHighlight();
+        }
+        if (Input.GetKeyDown(inputManager.buttonKeys[1])){ // Left Input
+            buttonFunctions.CallMethod(methods[1]);
+            if(buttonIndex != 0) buttonIndex--;
+            UpdateButtonHighlight();
+        }
+        if (Input.GetKeyDown(inputManager.buttonKeys[0])){ // Up Input
             buttonFunctions.CallMethod(methods[0]);
             if(buttonIndex >= 2) buttonIndex -=2;
             UpdateButtonHighlight();
         }
-        if (Input.GetKeyDown(inputManager.buttonKeys[1])){ // Right Input
-            buttonFunctions.CallMethod(methods[1]);
+        if (Input.GetKeyDown(inputManager.buttonKeys[2])){ // Down Input
+            buttonFunctions.CallMethod(methods[2]); 
             if(buttonIndex <= listOfButtons.Length -2) buttonIndex +=2;
-            UpdateButtonHighlight();
-        }
-        if (Input.GetKeyDown(inputManager.buttonKeys[2])){ // Up Input
-            buttonFunctions.CallMethod(methods[2]);
-            if(buttonIndex != listOfButtons.Length) buttonIndex++;
-            UpdateButtonHighlight();
-        }
-        if (Input.GetKeyDown(inputManager.buttonKeys[3])){ // Down Input
-            buttonFunctions.CallMethod(methods[3]); 
-            if(buttonIndex != 0) buttonIndex--;
             UpdateButtonHighlight();
         }
     }
 
     void UpdateButtonHighlight(){
         buttonHighlight.transform.SetParent(listOfButtons[buttonIndex].transform);
+        buttonHighlight.transform.position = listOfButtons[buttonIndex].transform.position;
     }
 }

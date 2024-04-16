@@ -8,15 +8,15 @@ public class ButtonFunctions : MonoBehaviour
         Invoke(methodName, Time.deltaTime); //Call this without MONOBEHAVIOR
     }
     public void Test1(){
-        Debug.Log("Left");
-    }
-    public void Test2(){
-        Debug.Log("Right");
-    }
-    public void Test3(){
         Debug.Log("Up");
     }
-    public void Test4(){
+    public void Test2(){
+        Debug.Log("Left");
+    }
+    public void Test3(){
         Debug.Log("Down");
+    }
+    public void Test4(){
+        Debug.Log("Right");
     }
 }
