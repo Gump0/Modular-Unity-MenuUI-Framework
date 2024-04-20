@@ -9,29 +9,35 @@ public class ButtonManager : MonoBehaviour
 {
     public ButtonFunctions buttonFunctions;
 
-    private GameObject buttonHighlight;
+    public Image buttonHighlight;
     private UIInputManager inputManager;
     [SerializeField] private Image[] listOfButtons;
     private int buttonIndex = 0;
     public string[] methods;
 
-    //Transform Lerp Animation stuff
-    private Vector3 currentButtonLocation, highlightLocation;
+    private Vector3 currentButtonLocation, highlightLocation; //Transform Lerp Animation stuff
+    private Vector2 selectedWH, highlightWH; //Store image components height & width
+    
     private float elapsedTime;
     
     private void Awake(){
+        buttonHighlight = FindObjectOfType<Image>();
+
         inputManager = GetComponent<UIInputManager>();
         buttonFunctions = GetComponent<ButtonFunctions>();
-        if (buttonHighlight == null) buttonHighlight = GameObject.Find("Highlight");
         
         highlightLocation = buttonHighlight.transform.position;
         currentButtonLocation = new Vector3(listOfButtons[buttonIndex].transform.position.x, listOfButtons[buttonIndex].transform.position.y, buttonHighlight.transform.position.z);
+
+        highlightWH = buttonHighlight.rectTransform.sizeDelta;
+        selectedWH = new Vector2(listOfButtons[buttonIndex].rectTransform.sizeDelta.x, listOfButtons[buttonIndex].rectTransform.sizeDelta.y) + (Vector2.one*10);
     }
 
     void Update(){
         if (elapsedTime < 1){
             float t = Mathf.Sin(elapsedTime * Mathf.PI/2); // Updated to Sin(t * PI/2)
-            buttonHighlight.transform.position = Vector3.Lerp(highlightLocation, currentButtonLocation, t);
+            buttonHighlight.transform.position = Vector3.Lerp(highlightLocation, currentButtonLocation, t); // transform lerp
+            buttonHighlight.rectTransform.sizeDelta = Vector2.Lerp(highlightWH, selectedWH, t); // scale lerp
             elapsedTime += Time.deltaTime;
         }
         CheckInputs();
@@ -58,11 +64,14 @@ public class ButtonManager : MonoBehaviour
             UpdateButtonHighlight();
         }
     }
-
     void UpdateButtonHighlight(){
         highlightLocation = buttonHighlight.transform.position;
         buttonHighlight.transform.SetParent(listOfButtons[buttonIndex].transform);
         currentButtonLocation = listOfButtons[buttonIndex].transform.position;
+
+        highlightWH = selectedWH; // stores value of prevoius button and sets it as highlight before transitioning to next button
+        selectedWH = new Vector2(listOfButtons[buttonIndex].rectTransform.sizeDelta.x, listOfButtons[buttonIndex].rectTransform.sizeDelta.y) + (Vector2.one*10);
+
         elapsedTime = 0f;
     }
 }
