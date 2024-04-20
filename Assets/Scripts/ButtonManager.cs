@@ -16,7 +16,7 @@ public class ButtonManager : MonoBehaviour
     public string[] methods;
 
     //Transform Lerp Animation stuff
-    private Transform currentButtonLocation, highlightLocation;
+    private Vector3 currentButtonLocation, highlightLocation;
     private float elapsedTime;
     
     private void Awake(){
@@ -24,14 +24,14 @@ public class ButtonManager : MonoBehaviour
         buttonFunctions = GetComponent<ButtonFunctions>();
         if (buttonHighlight == null) buttonHighlight = GameObject.Find("Highlight");
         
-        highlightLocation = buttonHighlight.transform;
-        currentButtonLocation = listOfButtons[buttonIndex].transform;
+        highlightLocation = buttonHighlight.transform.position;
+        currentButtonLocation = new Vector3(listOfButtons[buttonIndex].transform.position.x, listOfButtons[buttonIndex].transform.position.y, buttonHighlight.transform.position.z);
     }
 
     void Update(){
-        if (elapsedTime < 2){
-            float t = elapsedTime/2;
-            buttonHighlight.transform.position = Vector3.Lerp(highlightLocation.position, currentButtonLocation.position, t);
+        if (elapsedTime < 1){
+            float t = Mathf.Sin(elapsedTime * Mathf.PI/2); // Updated to Sin(t * PI/2)
+            buttonHighlight.transform.position = Vector3.Lerp(highlightLocation, currentButtonLocation, t);
             elapsedTime += Time.deltaTime;
         }
         CheckInputs();
@@ -60,9 +60,9 @@ public class ButtonManager : MonoBehaviour
     }
 
     void UpdateButtonHighlight(){
-        highlightLocation = buttonHighlight.transform;
+        highlightLocation = buttonHighlight.transform.position;
         buttonHighlight.transform.SetParent(listOfButtons[buttonIndex].transform);
-        currentButtonLocation = listOfButtons[buttonIndex].transform;
+        currentButtonLocation = listOfButtons[buttonIndex].transform.position;
         elapsedTime = 0f;
     }
 }
