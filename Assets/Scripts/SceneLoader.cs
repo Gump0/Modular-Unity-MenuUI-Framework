@@ -6,17 +6,26 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     public Animator transition;
+    [SerializeField] private int transitionTime;
+    private string nextSceneName;
 
-    public void LoadNextScene(string SceneName){
-        SceneManager.LoadScene("SceneName");
+    void Update(){
+        if(Input.GetMouseButtonDown(0)){
+            LoadNextScene("Under-Construction");
+        }
     }
 
-    IEnumerator LoadScene(int sceneIndex){
-        //Play Animation
+    public void LoadNextScene(string SceneName){
+        nextSceneName = SceneName;
+        StartCoroutine("LoadScene");
+    }
 
+    IEnumerator LoadScene(){
+        //Play Animation
+        transition.SetTrigger("Start");
         //Wait
-        
+        yield return new WaitForSeconds(transitionTime);
         //Load Scene
-        return null;
+        SceneManager.LoadScene(nextSceneName);
     }
 }
