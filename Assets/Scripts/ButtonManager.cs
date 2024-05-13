@@ -21,7 +21,7 @@ public class ButtonManager : MonoBehaviour
     private float elapsedTime;
     
     private void Awake(){
-        buttonHighlight = FindObjectOfType<Image>();
+        buttonHighlight = GameObject.FindGameObjectWithTag("Highlight")?.GetComponent<Image>(); //Patch that fixes loading screen from becoming highlight image (whoopsie)
 
         inputManager = GetComponent<UIInputManager>();
         buttonFunctions = GetComponent<ButtonFunctions>();
