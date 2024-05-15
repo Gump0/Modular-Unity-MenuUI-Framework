@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class ButtonFunctions : MonoBehaviour
 {
+    [SerializeField] private SceneLoader sceneLoader; // Scene Loader Reference
+
     public void CallMethod(string methodName){
         Invoke(methodName, Time.deltaTime); //Call this without MONOBEHAVIOR
     }
-    public void Test1(){
-        Debug.Log("Up");
+    public void Play(){
+        sceneLoader.LoadNextScene("Under-Construction");
     }
-    public void Test2(){
-        Debug.Log("Left");
+    public void Settings(){
+        Debug.Log("Settings");
     }
-    public void Test3(){
-        Debug.Log("Down");
-    }
-    public void Test4(){
-        Debug.Log("Right");
+    public void HowToPlay(){
+        Debug.Log("HowToPlay");
     }
 }

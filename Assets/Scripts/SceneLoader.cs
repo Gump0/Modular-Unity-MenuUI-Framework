@@ -9,12 +9,6 @@ public class SceneLoader : MonoBehaviour
     [SerializeField] private int transitionTime;
     private string nextSceneName;
 
-    void Update(){
-        if(Input.GetMouseButtonDown(0)){
-            LoadNextScene("Under-Construction");
-        }
-    }
-
     public void LoadNextScene(string SceneName){
         nextSceneName = SceneName;
         StartCoroutine("LoadScene");

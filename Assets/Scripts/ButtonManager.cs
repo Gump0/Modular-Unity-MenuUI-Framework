@@ -44,24 +44,26 @@ public class ButtonManager : MonoBehaviour
     }
     void CheckInputs(){
         if (Input.GetKeyDown(inputManager.buttonKeys[3])){ // Right Input
-            buttonFunctions.CallMethod(methods[3]);
+            //buttonFunctions.CallMethod(methods[3]);
             if(buttonIndex != listOfButtons.Length - 1) buttonIndex++;
             UpdateButtonHighlight();
         }
         if (Input.GetKeyDown(inputManager.buttonKeys[1])){ // Left Input
-            buttonFunctions.CallMethod(methods[1]);
             if(buttonIndex != 0) buttonIndex--;
             UpdateButtonHighlight();
         }
         if (Input.GetKeyDown(inputManager.buttonKeys[0])){ // Up Input
-            buttonFunctions.CallMethod(methods[0]);
             if(buttonIndex >= 2) buttonIndex -=2;
             UpdateButtonHighlight();
         }
-        if (Input.GetKeyDown(inputManager.buttonKeys[2])){ // Down Input
-            buttonFunctions.CallMethod(methods[2]); 
+        if (Input.GetKeyDown(inputManager.buttonKeys[2])){ // Down Input 
             if(buttonIndex < listOfButtons.Length -2) buttonIndex +=2;
             UpdateButtonHighlight();
+        }
+        if (Input.GetKeyDown(inputManager.buttonKeys[4])){ // Select/Fire Input
+            Debug.Log(buttonIndex);
+            buttonFunctions.CallMethod(methods[buttonIndex]);
+            Debug.Log("ENTER CLICKED");
         }
     }
     void UpdateButtonHighlight(){

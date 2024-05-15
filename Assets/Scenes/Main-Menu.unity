@@ -353,6 +353,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8246407917684823881, guid: c35521bc4237d379481ae40d18d767ad, type: 3}
   m_PrefabInstance: {fileID: 3499590824951158318}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &524842297 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2515798463216530714, guid: c35521bc4237d379481ae40d18d767ad, type: 3}
+  m_PrefabInstance: {fileID: 3499590824951158318}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a4b598d48b056a498d67c7965807ae7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &612590642
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,6 +630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11493c33c0a29424dab5f287cd01242c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneLoader: {fileID: 524842297}
 --- !u!114 &1340310214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -637,13 +649,10 @@ MonoBehaviour:
   - {fileID: 301450676}
   - {fileID: 124232246}
   - {fileID: 612590644}
-  - {fileID: 0}
-  - {fileID: 0}
   methods:
-  - Test1
-  - Test2
-  - Test3
-  - Test4
+  - Play
+  - Settings
+  - HowToPlay
 --- !u!114 &1340310215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -661,6 +670,7 @@ MonoBehaviour:
   - A
   - S
   - D
+  - Q
   buttonKeys: 
 --- !u!4 &1340310216
 Transform:
