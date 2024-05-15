@@ -13,9 +13,9 @@ public class ButtonFunctions : MonoBehaviour
         sceneLoader.LoadNextScene("Under-Construction");
     }
     public void Settings(){
-        Debug.Log("Settings");
+        sceneLoader.LoadNextScene("Under-Construction");
     }
     public void HowToPlay(){
-        Debug.Log("HowToPlay");
+        sceneLoader.LoadNextScene("Under-Construction");
     }
 }

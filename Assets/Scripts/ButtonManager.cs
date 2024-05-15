@@ -63,7 +63,6 @@ public class ButtonManager : MonoBehaviour
         if (Input.GetKeyDown(inputManager.buttonKeys[4])){ // Select/Fire Input
             Debug.Log(buttonIndex);
             buttonFunctions.CallMethod(methods[buttonIndex]);
-            Debug.Log("ENTER CLICKED");
         }
     }
     void UpdateButtonHighlight(){
