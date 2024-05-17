@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 72662115}
   - component: {fileID: 72662114}
   m_Layer: 5
-  m_Name: BUTTON-2-Right-Arrow
+  m_Name: ForwardArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -655,7 +655,7 @@ GameObject:
   - component: {fileID: 732177235}
   - component: {fileID: 732177234}
   m_Layer: 5
-  m_Name: BUTTON-1-Left-Arrow
+  m_Name: BackArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1038,6 +1038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneLoader: {fileID: 1438490968}
+  ms: {fileID: 583538739}
 --- !u!114 &1557894455
 MonoBehaviour:
   m_ObjectHideFlags: 0

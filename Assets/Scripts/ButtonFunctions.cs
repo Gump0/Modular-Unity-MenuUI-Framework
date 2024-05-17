@@ -11,7 +11,7 @@ public class ButtonFunctions : MonoBehaviour
         Invoke(methodName, Time.deltaTime); //Call this without MONOBEHAVIOR
     }
     public void Play(){
-        sceneLoader.LoadNextScene("Under-Construction");
+        sceneLoader.LoadNextScene("CharacterSelect");
     }
     public void Settings(){
         sceneLoader.LoadNextScene("Under-Construction");
@@ -21,16 +21,18 @@ public class ButtonFunctions : MonoBehaviour
     }
     public void BackArrow(){
         if(ms.modelIndex <= 0){
-            ms.modelIndex = ms.listOfModels.Length;
+            ms.modelIndex = ms.listOfModels.Length - 1;
         }else{
             ms.modelIndex--;
         }
+        ms.UpdateModel();
     }
     public void ForwardArrow(){
-        if(ms.modelIndex >= ms.listOfModels.Length){
+        if(ms.modelIndex >= ms.listOfModels.Length - 1){
             ms.modelIndex = 0;
         }else{
             ms.modelIndex++;
         }
+        ms.UpdateModel();
     }
 }

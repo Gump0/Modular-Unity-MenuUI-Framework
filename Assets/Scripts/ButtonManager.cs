@@ -61,8 +61,13 @@ public class ButtonManager : MonoBehaviour
             UpdateButtonHighlight();
         }
         if (Input.GetKeyDown(inputManager.buttonKeys[4])){ // Select/Fire Input
-            Debug.Log(buttonIndex);
-            buttonFunctions.CallMethod(methods[buttonIndex]);
+        //Reworked so that instead of using string array 'methods' we instead name the buttons after the functions, and exectute the regarding function accordingly
+        //Making setting up several menu scenes far easier...
+            GameObject selectedButton = listOfButtons[buttonIndex].gameObject; // 
+            string selectedFunction = selectedButton.name;
+            buttonFunctions.CallMethod(selectedFunction);
+
+            //Debug.Log("Parent GameObject of " + selectedButton  .name + " is: " + selectedFunction);
         }
     }
     void UpdateButtonHighlight(){

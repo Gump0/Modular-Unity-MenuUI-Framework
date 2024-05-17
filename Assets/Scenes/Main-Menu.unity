@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 124232247}
   - component: {fileID: 124232246}
   m_Layer: 5
-  m_Name: BUTTON-2
+  m_Name: Settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 301450677}
   - component: {fileID: 301450676}
   m_Layer: 5
-  m_Name: BUTTON-1
+  m_Name: Play
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -376,7 +376,7 @@ GameObject:
   - component: {fileID: 612590645}
   - component: {fileID: 612590644}
   m_Layer: 5
-  m_Name: BUTTON-3
+  m_Name: HowToPlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -631,6 +631,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneLoader: {fileID: 524842297}
+  ms: {fileID: 0}
 --- !u!114 &1340310214
 MonoBehaviour:
   m_ObjectHideFlags: 0
