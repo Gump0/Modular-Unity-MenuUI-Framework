@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Under-Construction.unity
     guid: 77eb92da659b0983f873c3c146675457
+  - enabled: 1
+    path: Assets/Scenes/CharacterSelect.unity
+    guid: 9fd1da4bc55b7438bb65aed5e012484f
   m_configObjects: {}

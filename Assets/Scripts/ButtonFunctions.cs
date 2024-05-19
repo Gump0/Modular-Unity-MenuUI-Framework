@@ -35,4 +35,7 @@ public class ButtonFunctions : MonoBehaviour
         }
         ms.UpdateModel();
     }
+    public void ToMainMenu(){
+        sceneLoader.LoadNextScene("Main-Menu");
+    }
 }

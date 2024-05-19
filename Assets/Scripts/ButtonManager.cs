@@ -63,7 +63,7 @@ public class ButtonManager : MonoBehaviour
         if (Input.GetKeyDown(inputManager.buttonKeys[4])){ // Select/Fire Input
         //Reworked so that instead of using string array 'methods' we instead name the buttons after the functions, and exectute the regarding function accordingly
         //Making setting up several menu scenes far easier...
-            GameObject selectedButton = listOfButtons[buttonIndex].gameObject; // 
+            GameObject selectedButton = listOfButtons[buttonIndex].gameObject;
             string selectedFunction = selectedButton.name;
             buttonFunctions.CallMethod(selectedFunction);
 
