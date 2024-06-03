@@ -7,7 +7,25 @@ public class ButtonFunctions : MonoBehaviour
     [SerializeField] private SceneLoader sceneLoader; // Scene Loader Reference
     [SerializeField] private ModelSwap ms; // Model swapper reference (only use for character select scene)
 
+    [SerializeField] private float delayTime;
+    [Header("Enables Delay From Button Exectuion")]
+    [Tooltip("Enables Delay From Button Exectuion, Allowing For Button Click Effects Before Execution")]
+    public bool enableButtonDelay;
+
     public void CallMethod(string methodName){
+        if(enableButtonDelay){
+            StartCoroutine(OnButtonClickDelay(methodName));
+        }
+        else{
+            Invoke(methodName, Time.deltaTime); //Call this without MONOBEHAVIOR
+        }
+    }
+    private IEnumerator OnButtonClickDelay(string methodName){
+        //Play animation on button click
+        //ButtonSheenLogic.AdjustSheenSpriteLocation();
+
+        yield return new WaitForSeconds(delayTime);
+        //After delay execute button function as intended
         Invoke(methodName, Time.deltaTime); //Call this without MONOBEHAVIOR
     }
     public void Play(){
