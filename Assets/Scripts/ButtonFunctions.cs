@@ -13,16 +13,10 @@ public class ButtonFunctions : MonoBehaviour
     public bool enableButtonDelay;
 
     public void CallMethod(string methodName){
-        if(enableButtonDelay){
-            StartCoroutine(OnButtonClickDelay(methodName));
-        }
-        else{
             Invoke(methodName, Time.deltaTime); //Call this without MONOBEHAVIOR
-        }
+
     }
     private IEnumerator OnButtonClickDelay(string methodName){
-        //Play animation on button click
-        //ButtonSheenLogic.AdjustSheenSpriteLocation();
 
         yield return new WaitForSeconds(delayTime);
         //After delay execute button function as intended

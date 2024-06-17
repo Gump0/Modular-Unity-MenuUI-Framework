@@ -632,6 +632,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneLoader: {fileID: 524842297}
   ms: {fileID: 0}
+  delayTime: 1.75
+  enableButtonDelay: 0
 --- !u!114 &1340310214
 MonoBehaviour:
   m_ObjectHideFlags: 0

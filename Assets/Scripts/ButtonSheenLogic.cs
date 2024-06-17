@@ -5,18 +5,21 @@ using UnityEngine.UI;
 
 public class ButtonSheenLogic : MonoBehaviour
 {
-    public GameObject sheenObject;
     private GameObject highlightObject;
 
     void Start(){
-        if(sheenObject == null){
-            sheenObject = GameObject.Find("ButtonSheen");
-        }
         if(highlightObject = null){
             highlightObject = GameObject.Find("Highlight");
         }
     }
     public void AdjustSheenSpriteLocation(){
-        //sheenObject.transform.position = 
+        if(highlightObject != null){
+            RectTransform highlightRT = highlightObject.GetComponent<RectTransform>();
+            RectTransform sheenRT = GetComponent<RectTransform>(); // Apparently you need to reference rect transform for the object the monobehavior is attached too for some reason lmao
+
+            sheenRT.sizeDelta = highlightRT.sizeDelta;
+
+            transform.position = highlightObject.transform.position;
+        }
     }
 }
