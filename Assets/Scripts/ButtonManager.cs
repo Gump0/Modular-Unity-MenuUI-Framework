@@ -12,7 +12,7 @@ public class ButtonManager : MonoBehaviour
     public Image buttonHighlight;
     private UIInputManager inputManager;
     [SerializeField] private Image[] listOfButtons;
-    private int buttonIndex = 0;
+    public int buttonIndex = 0;
     public string[] methods;
 
     private Vector3 currentButtonLocation, highlightLocation; //Transform Lerp Animation stuff
@@ -45,21 +45,24 @@ public class ButtonManager : MonoBehaviour
     void CheckInputs(){
         if (Input.GetKeyDown(inputManager.buttonKeys[3])){ // Right Input
             //buttonFunctions.CallMethod(methods[3]);
-            if(buttonIndex != listOfButtons.Length - 1) buttonIndex++;
-            UpdateButtonHighlight();
+            buttonIndex++;
         }
         if (Input.GetKeyDown(inputManager.buttonKeys[1])){ // Left Input
-            if(buttonIndex != 0) buttonIndex--;
-            UpdateButtonHighlight();
+            buttonIndex--;
         }
         if (Input.GetKeyDown(inputManager.buttonKeys[0])){ // Up Input
-            if(buttonIndex >= 2) buttonIndex -=2;
-            UpdateButtonHighlight();
+            buttonIndex -=2;
         }
         if (Input.GetKeyDown(inputManager.buttonKeys[2])){ // Down Input 
-            if(buttonIndex < listOfButtons.Length -2) buttonIndex +=2;
-            UpdateButtonHighlight();
+            buttonIndex +=2;
         }
+        buttonIndex += listOfButtons.Length;
+        buttonIndex = buttonIndex % listOfButtons.Length;
+
+
+        UpdateButtonHighlight(); // Fix this issue, its not working  :p
+
+
         if (Input.GetKeyDown(inputManager.buttonKeys[4])){ // Select/Fire Input
         //Reworked so that instead of using string array 'methods' we instead name the buttons after the functions, and exectute the regarding function accordingly
         //Making setting up several menu scenes far easier...
