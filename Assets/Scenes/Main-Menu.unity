@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37312585, g: 0.38074517, b: 0.35872814, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -648,6 +648,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonFunctions: {fileID: 0}
   buttonHighlight: {fileID: 1500560443}
+  inputManager: {fileID: 0}
   listOfButtons:
   - {fileID: 301450676}
   - {fileID: 124232246}
@@ -657,6 +658,7 @@ MonoBehaviour:
   - Play
   - Settings
   - HowToPlay
+  elapsedTime: 0
 --- !u!114 &1340310215
 MonoBehaviour:
   m_ObjectHideFlags: 0

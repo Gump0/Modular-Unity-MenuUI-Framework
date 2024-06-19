@@ -10,7 +10,7 @@ public class ButtonManager : MonoBehaviour
     public ButtonFunctions buttonFunctions;
 
     public Image buttonHighlight;
-    private UIInputManager inputManager;
+    [SerializeField] private UIInputManager inputManager;
     [SerializeField] private Image[] listOfButtons;
     public int buttonIndex = 0;
     public string[] methods;

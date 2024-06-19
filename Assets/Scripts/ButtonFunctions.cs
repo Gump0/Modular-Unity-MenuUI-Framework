@@ -47,7 +47,7 @@ public class ButtonFunctions : MonoBehaviour
         }
         ms.UpdateModel();
     }
-    public void ToMainMenu(){
+    public void TitlePageToMainScreen(){
         sceneLoader.LoadNextScene("Main-Menu");
     }
 }
