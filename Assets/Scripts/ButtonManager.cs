@@ -15,18 +15,17 @@ public class ButtonManager : MonoBehaviour
     public int buttonIndex = 0;
     public string[] methods;
 
-    private Vector3 currentButtonLocation, highlightLocation; //Transform Lerp Animation stuff
+    private Vector3 currentButtonLocation; //Transform Lerp Animation stuff
     private Vector2 selectedWH, highlightWH; //Store image components height & width
     
-    private float elapsedTime;
+    [SerializeField] private float elapsedTime;
     
     private void Awake(){
         buttonHighlight = GameObject.FindGameObjectWithTag("Highlight")?.GetComponent<Image>(); //Patch that fixes loading screen from becoming highlight image (whoopsie)
 
         inputManager = GetComponent<UIInputManager>();
         buttonFunctions = GetComponent<ButtonFunctions>();
-        
-        highlightLocation = buttonHighlight.transform.position;
+
         currentButtonLocation = new Vector3(listOfButtons[buttonIndex].transform.position.x, listOfButtons[buttonIndex].transform.position.y, buttonHighlight.transform.position.z);
 
         highlightWH = buttonHighlight.rectTransform.sizeDelta;
@@ -36,7 +35,7 @@ public class ButtonManager : MonoBehaviour
     void Update(){
         if (elapsedTime < 1){
             float t = Mathf.Sin(elapsedTime * Mathf.PI/2); // Updated to Sin(t * PI/2)
-            buttonHighlight.transform.position = Vector3.Lerp(highlightLocation, currentButtonLocation, t); // transform lerp
+            buttonHighlight.transform.position = Vector3.Lerp(buttonHighlight.transform.position, currentButtonLocation, t); // transform lerp
             buttonHighlight.rectTransform.sizeDelta = Vector2.Lerp(highlightWH, selectedWH, t); // scale lerp
             elapsedTime += Time.deltaTime;
         }
@@ -46,15 +45,19 @@ public class ButtonManager : MonoBehaviour
         if (Input.GetKeyDown(inputManager.buttonKeys[3])){ // Right Input
             //buttonFunctions.CallMethod(methods[3]);
             buttonIndex++;
+            elapsedTime = 0f;
         }
         if (Input.GetKeyDown(inputManager.buttonKeys[1])){ // Left Input
             buttonIndex--;
+            elapsedTime = 0f;
         }
         if (Input.GetKeyDown(inputManager.buttonKeys[0])){ // Up Input
             buttonIndex -=2;
+            elapsedTime = 0f;
         }
         if (Input.GetKeyDown(inputManager.buttonKeys[2])){ // Down Input 
             buttonIndex +=2;
+            elapsedTime = 0f;
         }
         buttonIndex += listOfButtons.Length;
         buttonIndex = buttonIndex % listOfButtons.Length;
@@ -74,13 +77,10 @@ public class ButtonManager : MonoBehaviour
         }
     }
     void UpdateButtonHighlight(){
-        highlightLocation = buttonHighlight.transform.position;
         buttonHighlight.transform.SetParent(listOfButtons[buttonIndex].transform);
         currentButtonLocation = listOfButtons[buttonIndex].transform.position;
 
         highlightWH = selectedWH; // stores value of prevoius button and sets it as highlight before transitioning to next button
         selectedWH = new Vector2(listOfButtons[buttonIndex].rectTransform.sizeDelta.x, listOfButtons[buttonIndex].rectTransform.sizeDelta.y) + (Vector2.one*10);
-
-        elapsedTime = 0f;
     }
 }
